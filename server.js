@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const nodemon = require('nodemon');
 const { animals } = require('./data/animals');
 
 const PORT = process.env.PORT || 3001;
