@@ -13,6 +13,20 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+//lesson 11.3.3 - added  route
+app.use(express.static('public'));
+//lesson 11.3.6 - added html route
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+
 
 //11.1.5 - filteredResults
 function filterByQuery(query, animalsArray) {
@@ -127,6 +141,10 @@ app.post('/api/animals', (req, res) => {
 // app.listen(3001, () => {
 //   console.log(`API server now on port 3001!`);
 // });
+//lesson 11.3.3 - add a route to server.js
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 // lesson 11.1.6 - replace listen PORT
 app.listen(PORT, () => {
